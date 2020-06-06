@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
+        uses: eregon/setup-ruby@automated-bundler-caching
         with:
           ruby-version: ${{ matrix.ruby }}
       - name: Install dependencies
@@ -36,7 +36,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
+        uses: eregon/setup-ruby@automated-bundler-caching
         with:
           ruby-version: ${{ matrix.cfg.ruby }}
       - name: Install dependencies
