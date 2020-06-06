@@ -17,8 +17,6 @@ jobs:
         uses: eregon/setup-ruby@automated-bundler-caching
         with:
           ruby-version: ${{ matrix.ruby }}
-      - name: Install dependencies
-        run:  bundle install
       - name: rake test
         run:  bundle exec rake test
 
@@ -39,8 +37,6 @@ jobs:
         uses: eregon/setup-ruby@automated-bundler-caching
         with:
           ruby-version: ${{ matrix.cfg.ruby }}
-      - name: Install dependencies
-        run:  bundle install
       - name: Download test readline
         run:  ruby download-test_readline.rb
       - name: rake test
@@ -61,11 +57,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
+        uses: eregon/setup-ruby@automated-bundler-caching
         with:
           ruby-version: ${{ matrix.ruby }}
-      - name: Install dependencies
-        run:  bundle install
       - name: Install reline
         run:  |
           rake build
@@ -91,11 +85,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
+        uses: eregon/setup-ruby@automated-bundler-caching
         with:
           ruby-version: ${{ matrix.ruby }}
-      - name: Install dependencies
-        run:  bundle install
       - name: Install libvterm
         run: |
           sudo apt install -y libtool-bin
