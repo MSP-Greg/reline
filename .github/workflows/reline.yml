@@ -17,9 +17,24 @@ jobs:
         uses: MSP-Greg/ruby-setup-ruby@add-path
         with:
           ruby-version: ${{ matrix.ruby }}
-      - name: Install dependencies
+
+      - name: pwsh Install dependencies
+        if:   matrix.os != 'windows-latest'
+        shell: pwsh
+        run:  bundle install
+
+      - name: pwsh rake test
+        if:   matrix.os != 'windows-latest'
+        shell: pwsh
+        run:  bundle exec rake test
+
+
+      - name: bash Install dependencies
+        if:   matrix.os == 'windows-latest'
         shell: bash
         run:  bundle install
-      - name: rake test
+
+      - name: bash rake test
+        if:   matrix.os == 'windows-latest'
         shell: bash
         run:  bundle exec rake test
